@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Views;
+using Models;
 
 namespace AmazonSimulator_VS
 {
@@ -20,7 +21,7 @@ namespace AmazonSimulator_VS
 
         public Startup(IConfiguration configuration)
         {
-            simulationController = new SimulationController(new Models.World());
+            simulationController = new SimulationController(new World());
 
             Thread InstanceCaller = new Thread(
                 new ThreadStart(simulationController.Simulate));
