@@ -39,7 +39,7 @@ namespace Views {
             try {
                 await socket.SendAsync(new ArraySegment<byte>(buffer, 0, message.Length), WebSocketMessageType.Text, true, CancellationToken.None);
             } catch(Exception e) {
-                Console.WriteLine("Error while sending information to client, probably a Socket disconnect");
+                Console.WriteLine("Error while sending information to client, probably a Socket disconnect" + e);
             }
         }
 
@@ -47,6 +47,7 @@ namespace Views {
             SendMessage(c.ToJson());
         }
 
+        // Implementeren voor als de sim is voldaan
         public void OnCompleted()
         {
             throw new NotImplementedException();
@@ -57,9 +58,9 @@ namespace Views {
             throw new NotImplementedException();
         }
 
-        public void OnNext(Command value)
+        public void OnNext(Command c)
         {
-            SendCommand(value);
+            SendCommand(c);
         }
     }
 }
