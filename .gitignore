@@ -7,3 +7,5 @@
 !/Models/
 !/Views/
 !/Controllers/
+!/Program.cs
+!/Startup.cs
