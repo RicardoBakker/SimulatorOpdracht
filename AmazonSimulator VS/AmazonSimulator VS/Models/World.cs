@@ -6,15 +6,19 @@ using Controllers;
 namespace Models {
     public class World : IObservable<Command>, IUpdatable
     {
+        // Robot List wordt Model List
         private List<Robot> worldObjects = new List<Robot>();
         private List<IObserver<Command>> observers = new List<IObserver<Command>>();
         
-        public World() {
+        // Recursief modellen laten inladen
+        public World()
+        {
             Robot r = CreateRobot(0,0,0);
             r.Move(4.6, 0, 13);
         }
 
-        private Robot CreateRobot(double x, double y, double z) {
+        private Robot CreateRobot(double x, double y, double z) 
+        {
             Robot r = new Robot(x,y,z,0,0,0);
             worldObjects.Add(r);
             return r;
@@ -22,7 +26,8 @@ namespace Models {
 
         public IDisposable Subscribe(IObserver<Command> observer)
         {
-            if (!observers.Contains(observer)) {
+            if (!observers.Contains(observer)) 
+            {
                 observers.Add(observer);
 
                 SendCreationCommandsToObserver(observer);
@@ -30,32 +35,39 @@ namespace Models {
             return new Unsubscriber<Command>(observers, observer);
         }
 
-        private void SendCommandToObservers(Command c) {
-            for(int i = 0; i < this.observers.Count; i++) {
+        private void SendCommandToObservers(Command c) 
+        {
+            for(int i = 0; i < this.observers.Count; i++) 
+            {
                 this.observers[i].OnNext(c);
             }
         }
 
-        private void SendCreationCommandsToObserver(IObserver<Command> obs) {
-            foreach(Robot m3d in worldObjects) {
+        // Robot wordt model
+        private void SendCreationCommandsToObserver(IObserver<Command> obs) 
+        {
+            foreach(Robot m3d in worldObjects) 
+            {
                 obs.OnNext(new UpdateModel3DCommand(m3d));
             }
         }
 
+        // Robot wordt model
         public bool Update(int tick)
         {
-            for(int i = 0; i < worldObjects.Count; i++) {
-                Robot u = worldObjects[i];
+            for(int i = 0; i < worldObjects.Count; i++) 
+            {
+                Robot r = worldObjects[i];
 
-                if(u is IUpdatable) {
-                    bool needsCommand = ((IUpdatable)u).Update(tick);
+                if(r is IUpdatable) 
+                {
+                    bool needsCommand = ((IUpdatable)r).Update(tick);
 
                     if(needsCommand) {
-                        SendCommandToObservers(new UpdateModel3DCommand(u));
+                        SendCommandToObservers(new UpdateModel3DCommand(r));
                     }
                 }
             }
-
             return true;
         }
     }
