@@ -1,15 +1,9 @@
+# Ignore everything in repository root 
+/*
 
-AmazonSimulator VS/AmazonSimulator VS/obj/Debug/netcoreapp2.0/AmazonSimulator VS.assets.cache
-AmazonSimulator VS/AmazonSimulator VS/obj/Debug/netcoreapp2.0/project.razor.json
-AmazonSimulator VS/AmazonSimulator VS/obj/Debug/netcoreapp2.0/AmazonSimulator VS.assets.cache
-AmazonSimulator VS/AmazonSimulator VS/obj/project.assets.json
-AmazonSimulator VS/AmazonSimulator VS/obj/Debug/netcoreapp2.0/AmazonSimulator VS.pdb
-AmazonSimulator VS/AmazonSimulator VS/obj/Debug/netcoreapp2.0/AmazonSimulator VS.dll
-AmazonSimulator VS/AmazonSimulator VS/obj/Debug/netcoreapp2.0/AmazonSimulator VS.csproj.FileListAbsolute.txt
-AmazonSimulator VS/AmazonSimulator VS/obj/Debug/netcoreapp2.0/AmazonSimulator VS.assets.cache
-AmazonSimulator VS/AmazonSimulator VS/obj/AmazonSimulator VS.csproj.nuget.g.props
-AmazonSimulator VS/AmazonSimulator VS/obj/AmazonSimulator VS.csproj.nuget.cache
-AmazonSimulator VS/AmazonSimulator VS/bin/Debug/netcoreapp2.0/AmazonSimulator VS.pdb
-AmazonSimulator VS/AmazonSimulator VS/bin/Debug/netcoreapp2.0/AmazonSimulator VS.dll
-AmazonSimulator VS/AmazonSimulator VS/.vscode/tasks.json
-AmazonSimulator VS/AmazonSimulator VS/.vscode/launch.json
+# Files to not ignore
+!/.gitignore
+!/wwwroot/
+!/Models/
+!/Views/
+!/Controllers/
