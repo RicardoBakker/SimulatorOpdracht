@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Models
 {
-    public class Transport : Model
+    public class Transport : Model, IUpdatable
     {
         public Transport(double x, double y, double z, double rotationX, double rotationY, double rotationZ) : base(x, y, z, rotationX, rotationY, rotationZ)
         {
