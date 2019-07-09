@@ -6,7 +6,8 @@ using Controllers;
 namespace Models {
     public class World : IObservable<Command>, IUpdatable
     {
-        private List<Model> worldObjects = new List<Model>();
+        // Robot List wordt Model List
+        private List<Robot> worldObjects = new List<Robot>();
         private List<IObserver<Command>> observers = new List<IObserver<Command>>();
         
         public World()
@@ -38,22 +39,29 @@ namespace Models {
             }
         }
 
+        // Robot wordt model
         private void SendCreationCommandsToObserver(IObserver<Command> obs) 
         {
-            foreach(Model m3d in worldObjects) 
+            foreach(Robot m3d in worldObjects) 
             {
                 obs.OnNext(new UpdateModel3DCommand(m3d));
             }
         }
 
+        // Robot wordt model
         public bool Update(int tick)
         {
-            foreach(Model m3d in worldObjects)
+            for(int i = 0; i < worldObjects.Count; i++) 
             {
-                if(m3d is IUpdatable) 
+                Robot r = worldObjects[i];
+
+                if(r is IUpdatable) 
                 {
-                    bool needsCommand = ((IUpdatable)m3d).Update(tick);
-                    if(needsCommand) { SendCommandToObservers(new UpdateModel3DCommand(m3d)); }
+                    bool needsCommand = ((IUpdatable)r).Update(tick);
+
+                    if(needsCommand) {
+                        SendCommandToObservers(new UpdateModel3DCommand(r));
+                    }
                 }
             }
             return true;
