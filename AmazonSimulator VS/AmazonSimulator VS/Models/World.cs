@@ -9,18 +9,15 @@ namespace Models {
         private List<Model> worldObjects = new List<Model>();
         private List<IObserver<Command>> observers = new List<IObserver<Command>>();
         
-        // Recursief modellen laten inladen
         public World()
         {
-            Robot r = CreateRobot(0,0,0);
-            r.Move(4.6, 0, 13);
+            CreateRobot(0,0,0);
+            CreateRobot(1,1,1);
         }
 
-        private Robot CreateRobot(double x, double y, double z) 
-        {
-            Robot r = new Robot(x,y,z,0,0,0);
-            worldObjects.Add(r);
-            return r;
+        private void CreateRobot(double x, double y, double z) 
+        {       
+            worldObjects.Add(new Robot(x,y,z,0,0,0));
         }
 
         public IDisposable Subscribe(IObserver<Command> observer)
