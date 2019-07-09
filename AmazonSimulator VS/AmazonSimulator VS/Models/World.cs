@@ -12,7 +12,6 @@ namespace Models {
         public World()
         {
             CreateRobot(0,0,0);
-            CreateRobot(1,1,1);
         }
 
         private void CreateRobot(double x, double y, double z) 
